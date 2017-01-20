@@ -4,7 +4,10 @@
   "description": "Reddit command-line browsing",
   "main": "index.js",
   "dependencies": {
-    "inquirer": "^1.0.2",
+    "asciify-image": "0.0.8",
+    "bluebird": "^3.4.7",
+    "image-to-ascii": "^3.0.5",
+    "inquirer": "^1.2.3",
     "inquirer-promise": "^1.0.0",
     "request": "^2.79.0",
     "request-promise": "^4.1.1"

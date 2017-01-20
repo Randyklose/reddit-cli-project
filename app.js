@@ -1,6 +1,7 @@
 var reddit = require("./reddit");
-var inquirer = require("inquirer-promise");
+var inquirer = require("inquirer");
 var reusableFun = require("./reusablefun");
+var imageToAscii = require("image-to-ascii");
 
 function initialMenu(){
 
@@ -25,10 +26,26 @@ inquirer.prompt({
         .then(reusableFun.displayList);
     }
     else if(answer.menu === 'SUBREDDIT') {
-        return reddit.getSubreddit();
-    }
+        return reusableFun.askQuestion()
+        .then(reddit.getSubreddit)
+        .then(reusableFun.displayList)
+        .then(reusableFun.organizeByTtile)
+        .then(reusableFun.chooseTitle)
+        .then(reusableFun.getUrl)
+        .then(reusableFun.parseUrl)
+        
+        }
+        
     else if(answer.menu === 'SUBREDDITS') {
-        return reddit.getSubreddits();
+        return reddit.getSubreddits()
+        .then(reusableFun.subRedditList)
+        .then(reusableFun.askSubreddits)
+        .then(reddit.getSubreddit)
+        .then(reusableFun.displayList)
+        .then(reusableFun.organizeByTtile)
+        .then(reusableFun.chooseTitle)
+        .then(reusableFun.asciify)
+        
     }
     else if(answer.menu === 'SORTEDHOMEPAGE') {
         return reddit.getSortedHomepage();

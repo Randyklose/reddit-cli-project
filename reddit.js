@@ -25,7 +25,7 @@ In contrast to the `getHomepage` function, this one accepts a `sortingMethod` pa
 function getSortedHomepage(sortingMethod) {
   // Load reddit.com/{sortingMethod}.json and call back with the array of posts
   // Check if the sorting method is valid based on the various Reddit sorting methods
-  return requestPromise("reddit.com/" + sortingMethod + ".json")
+  return requestPromise("https://www.reddit.com/" + sortingMethod + ".json")
     .then(function(result) {
       var redditByCategory = JSON.parse(result);
       return redditByCategory.data.children;
@@ -44,7 +44,7 @@ This function should "return" the posts on the front page of a subreddit as an a
 */
 function getSubreddit(subreddit) {
   // Load reddit.com/r/{subreddit}.json and call back with the array of posts
-  return requestPromise("reddit.com/r/" + subreddit + ".json")
+  return requestPromise("https://www.reddit.com/r/" + subreddit + ".json")
     .then(function(result) {
         var subRedditFrontpage = JSON.parse(result);
         return subRedditFrontpage.data.children;
@@ -58,7 +58,7 @@ function getSubreddit(subreddit) {
 function getSortedSubreddit(subreddit, sortingMethod) {
   // Load reddit.com/r/{subreddit}/{sortingMethod}.json and call back with the array of posts
   // Check if the sorting method is valid based on the various Reddit sorting methods
-  return requestPromise("reddit.com/r/" + subreddit + sortingMethod + ".json")
+  return requestPromise("https://www.reddit.com/r/" + subreddit + sortingMethod + ".json")
     .then(function(result) {
         var subRedditSortedFrontpage = JSON.parse(result);
         return subRedditSortedFrontpage.data.children;
@@ -70,7 +70,7 @@ function getSortedSubreddit(subreddit, sortingMethod) {
             */
 function getSubreddits() {
         // Load reddit.com/subreddits.json and call back with an array of subreddits
-    return requestPromise("reddit.com/subreddits.json")
+    return requestPromise("https://www.reddit.com/subreddits.json")
     .then(function(result) {
       var subreddits = JSON.parse(result);
       return subreddits.data.children;
