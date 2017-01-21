@@ -3,7 +3,7 @@ var inquirer = require("inquirer");
 const bluebird = require("bluebird")
 const imageToAscii = bluebird.promisify(require("image-to-ascii"));
 var requestPromise = require('request-promise');
-
+var wrap = require("word-wrap");
 //Displays the post only by the 4 values we are interested in.
 function displayList(array) {
     return array.map(function(x) {
@@ -94,26 +94,29 @@ function asciify(val) {
 
 function getUrl(val) {
     var url = "https://www.reddit.com" + val.title.permalink + ".json";
-    console.log(url)
+    
     return requestPromise(url);
 }
 
 function parseUrl(result) {
-        console.log(result)
         return JSON.parse(result);
 }
 
-
+function newArray(array) {
+    
+        return array[1].data.children;
+}
 
 function retrieveComments(array) {
-   return  array.map(value) {
+   return  array.map(function(value) {
         return {
-            username:
-            comment:
-            
+            username:value.data.author,
+            comment:value.data.body,
+            replies:value.data.replies ? value.data.replies.data ? retrieveComments(value.data.replies.data.children):"no replies" :"no replies"
         }
-    }
+    })
 }
+
 
 
 
@@ -133,5 +136,6 @@ module.exports= {
     asciify: asciify,
     getUrl: getUrl,
     parseUrl: parseUrl,
+    newArray: newArray,
     retrieveComments: retrieveComments
 }

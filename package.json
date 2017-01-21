@@ -10,7 +10,8 @@
     "inquirer": "^1.2.3",
     "inquirer-promise": "^1.0.0",
     "request": "^2.79.0",
-    "request-promise": "^4.1.1"
+    "request-promise": "^4.1.1",
+    "word-wrap": "^1.2.0"
   },
   "devDependencies": {},
   "scripts": {

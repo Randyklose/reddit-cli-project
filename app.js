@@ -33,6 +33,8 @@ inquirer.prompt({
         .then(reusableFun.chooseTitle)
         .then(reusableFun.getUrl)
         .then(reusableFun.parseUrl)
+        .then(reusableFun.newArray)
+        .then(reusableFun.retrieveComments)
         
         }
         
